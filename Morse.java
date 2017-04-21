@@ -3,21 +3,24 @@ import java.util.Scanner;
 public class Morse {
 
 	public static void main(String[] args) {
-		String[] morse = { ".- ", "-... ", "-.-. ", "-.. ", ". ", "..-. ", "--. ", ".... ", ".. ",
+		String[] morse = { ".-", "-...", "-.-.", "-..", ".", "..-.", "--.", "....", "..",
 
-				".--- ", "-.- ", ".-.. ", "-- ", "-. ", "--- ", ".--. ", "--.- ", ".-. ", "... ", "- ", "..- ",
+				".---", "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-", "..-",
 
-				"...- ", ".-- ", "-..- ", "-.-- ", "--.. ", "|" };
+				"...-", ".--", "-..-", "-.--", "--..", "|" };
 		String[] alfabet = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r",
 				"s", "t", "u", "v", "w", "x", "y", "z", " " };
 
-		int a;
-		a = Input.getInt("Wpisz 1 dla Morse'a do słowa albo wpisz 2 dla słó do Morse'a.");
+		Scanner reader = new Scanner(System.in);
+		System.out.println("Wpisz 1 dla Morse'a do słowa albo wpisz 2 dla słów do Morse'a.");
+		String znak = reader.nextLine();
+		String a = reader.nextLine();
 
 		switch (a) {
-		case 2: {
-			String toMorse = new String();
-			toMorse = Input.getString("Wpisz zdanie");
+		case "2": {
+			Scanner scan2 = new Scanner(System.in);
+			System.out.println("Wpisz zdanie");
+			String toMorse = scan2.nextLine();
 			toMorse = toMorse.toUpperCase();
 			for (int i = 0; i < toMorse.length(); i++) {
 				char x = toMorse.charAt(i);
@@ -30,21 +33,26 @@ public class Morse {
 			break;
 		}
 
-		case 1: {
-			String toSlowa = new String();
-			toSlowa = Input.getString("Wpisz kod Morsa");
+		case "1": {
+			Scanner scan1 = new Scanner(System.in);
+			System.out.println("Wpisz kod Morsa");
+			String toSlowa = scan1.nextLine();
 
-			String[] parts = toSlowa.split("|");
-			for (int x = 0; x < parts.length; x++) {
-				if (parts.equals(morse[x]))
-					System.out.println(alfabet[x]);
+			String[] czesci = toSlowa.split("\\|");
+			for (int x = 0; x < czesci.length; x++) {
+				for (int y = 0; y < morse.length; y++) {
+
+					if (czesci[x].equals(morse[y]))
+
+						System.out.println(alfabet[y]);
+				}
 			}
 
 			break;
 		}
 
 		default: {
-			System.out.println("Invalid Response");
+			System.out.println("Nieprawidłowa odpowiedz");
 		}
 		}
 
